@@ -10,6 +10,8 @@ public class ChuckNorrisJokesService implements JokesService {
     public ChuckNorrisQuotes quotes;
 
     public ChuckNorrisJokesService(ChuckNorrisQuotes quotes) {
+        // Could have done this instead of following @Bean config example from Chuck Norris repo:
+        // this.quotes = new ChuckNorrisQuotes();
         this.quotes = quotes;
     }
 
