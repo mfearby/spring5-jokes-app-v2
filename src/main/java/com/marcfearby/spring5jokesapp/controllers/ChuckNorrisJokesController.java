@@ -1,11 +1,11 @@
 package com.marcfearby.spring5jokesapp.controllers;
 
 import com.marcfearby.spring5jokesapp.interfaces.JokesService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-// todo convert to @Controller when I setup thymeleaf
-@RestController
+@Controller
 public class ChuckNorrisJokesController {
 
     private final JokesService jokesService;
@@ -14,9 +14,12 @@ public class ChuckNorrisJokesController {
         this.jokesService = jokesService;
     }
 
-    @GetMapping("/")
-    public String getQuote() {
-        return jokesService.getJoke();
+    @RequestMapping("/")
+    public String getQuote(Model model) {
+        String joke = jokesService.getJoke();
+        System.out.println("joke: " + joke);
+        model.addAttribute("joke", joke);
+        return "index";
     }
 
 }
